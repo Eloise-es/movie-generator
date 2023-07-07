@@ -1,13 +1,15 @@
+import Card from "react-bootstrap/Card";
+
 function MovieCard({ image, altText, title, synopsis, idea }) {
   return (
-    <div className="card">
-      <img src={image} alt={altText} className="card-img-top" />
-      <div className="card-body">
-        <h4 className="text-center">{title}</h4>
-        <p className="card-text">{synopsis}</p>
-      </div>
-      <div className="card-footer">Initial idea: "{idea}"</div>
-    </div>
+    <Card>
+      <Card.Img variant="top" src={image} alt={altText} />
+      <Card.Body>
+        <Card.Title>{title}</Card.Title>
+        <Card.Text>{synopsis}</Card.Text>
+      </Card.Body>
+      <Card.Footer className="text-muted">From the idea "{idea}"</Card.Footer>
+    </Card>
   );
 }
 
