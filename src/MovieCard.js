@@ -2,7 +2,7 @@ import Card from "react-bootstrap/Card";
 
 function MovieCard({ image, altText, title, synopsis, idea }) {
   return (
-    <Card>
+    <Card className="mb-3">
       <Card.Img variant="top" src={image} alt={altText} />
       <Card.Body>
         <Card.Title>{title}</Card.Title>
