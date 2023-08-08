@@ -1,5 +1,4 @@
 import { Outlet } from "react-router-dom";
-import Display from "../Display";
 import TopNav from "../partials/top-nav";
 import Footer from "../partials/footer";
 
