@@ -15,21 +15,26 @@ export default function TopNav() {
 			data-bs-theme="dark"
 		>
 			<Container>
-				<Navbar.Brand href="#home">
-					<img
-						src={logo}
-						height="40"
-						className="d-inline-block align-top"
-						alt="AIMd"
-					/>
-				</Navbar.Brand>
+				<LinkContainer to={"/"}>
+					<Navbar.Brand href="#home">
+						<img
+							src={logo}
+							height="40"
+							className="d-inline-block align-top"
+							alt="AIMd"
+						/>
+					</Navbar.Brand>
+				</LinkContainer>
+
 				<Navbar.Toggle aria-controls="basic-navbar-nav" />
 				<Navbar.Collapse id="basic-navbar-nav">
 					<Nav className="me-auto">
 						<LinkContainer to={"/movies"}>
 							<Nav.Link>View all movies</Nav.Link>
 						</LinkContainer>
-						<Nav.Link href="#suggest">Suggest a movie</Nav.Link>
+						<LinkContainer to={"/generator"}>
+							<Nav.Link>Suggest a movie</Nav.Link>
+						</LinkContainer>
 					</Nav>
 				</Navbar.Collapse>
 			</Container>

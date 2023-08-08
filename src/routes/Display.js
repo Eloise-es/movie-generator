@@ -2,10 +2,10 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 
-import MovieCard from "./MovieCard";
-import img1 from "./images/example-1.jpg";
-import img2 from "./images/example-2.jpg";
-import img3 from "./images/example-3.jpg";
+import MovieCard from "../partials/MovieCard";
+import img1 from "../images/example-1.jpg";
+import img2 from "../images/example-2.jpg";
+import img3 from "../images/example-3.jpg";
 
 export default function Display() {
 	return (

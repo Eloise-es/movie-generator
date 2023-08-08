@@ -5,7 +5,8 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import "./index.css";
 import Root from "./routes/root";
 import ErrorPage from "./Error";
-import Display from "./Display";
+import Display from "./routes/Display";
+import Generator from "./routes/Generator";
 
 const router = createBrowserRouter([
 	{
@@ -14,8 +15,19 @@ const router = createBrowserRouter([
 		errorElement: <ErrorPage />,
 		children: [
 			{
+				path: "/",
+				element: <Display />,
+				errorElement: <ErrorPage />,
+			},
+			{
 				path: "/movies",
 				element: <Display />,
+				errorElement: <ErrorPage />,
+			},
+			{
+				path: "/generator",
+				element: <Generator />,
+				errorElement: <ErrorPage />,
 			},
 		],
 	},
