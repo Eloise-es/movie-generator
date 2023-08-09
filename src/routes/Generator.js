@@ -1,17 +1,17 @@
 import React, { useState } from "react";
-import "../generator.css";
 import { Card, Form, Row, Button, InputGroup } from "react-bootstrap";
 import Result from "../partials/Result";
+import Loading from "../partials/loading";
 import movieboss from "../images/ai-movie-boss.png";
 import sendbtn from "../images/send-btn-icon.png";
+import "../generator.css";
 
 import { Configuration, OpenAIApi } from "openai";
-import { process } from "../env";
-import Loading from "../partials/loading";
 
 const configuration = new Configuration({
-	apiKey: process.env.OPENAI_API_KEY,
+	apiKey: process.env.REACT_APP_OPENAI_API_KEY,
 });
+
 const openai = new OpenAIApi(configuration);
 
 export default function Generator() {
