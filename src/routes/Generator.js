@@ -28,6 +28,7 @@ export default function Generator() {
 	const [isLoading, setIsLoading] = useState(false);
 	const [isFinished, setIsFinished] = useState(false);
 	const [showResult, setShowResult] = useState(false);
+	setImg("https://picsum.photos/200/200");
 
 	// When send button is clicked (form submitted)
 	function send(event) {
