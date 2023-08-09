@@ -22,13 +22,12 @@ export default function Generator() {
 	);
 	const [title, setTitle] = useState("Title");
 	const [synopsis, setSynopsis] = useState("A film about many things");
-	const [img, setImg] = useState("https://picsum.photos/200/200");
+	const img = "https://picsum.photos/200/200";
 	const [imgAlt, setImgAlt] = useState("Movie poster");
 	const [actors, setActors] = useState(["Tom Cruise", "Emma Watson"]);
 	const [isLoading, setIsLoading] = useState(false);
 	const [isFinished, setIsFinished] = useState(false);
 	const [showResult, setShowResult] = useState(false);
-	setImg("https://picsum.photos/200/200");
 
 	// When send button is clicked (form submitted)
 	function send(event) {
@@ -182,7 +181,7 @@ export default function Generator() {
 							className="m-auto my-3"
 							size="lg"
 							variant="dark"
-							onClick={handleClick}
+							onClick={() => handleClick()}
 						>
 							View Result
 						</Button>
