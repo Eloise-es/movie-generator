@@ -1,18 +1,11 @@
 import React, { useState } from "react";
 import { Card, Form, Row, Button, InputGroup } from "react-bootstrap";
+import { openai, app } from "../config.js";
 import Result from "../partials/Result";
 import Loading from "../partials/loading";
 import movieboss from "../images/ai-movie-boss.png";
 import sendbtn from "../images/send-btn-icon.png";
 import "../generator.css";
-
-import { Configuration, OpenAIApi } from "openai";
-
-const configuration = new Configuration({
-	apiKey: process.env.REACT_APP_OPENAI_API_KEY,
-});
-
-const openai = new OpenAIApi(configuration);
 
 export default function Generator() {
 	// Set variables using useState
@@ -30,7 +23,7 @@ export default function Generator() {
 	const [showResult, setShowResult] = useState(false);
 
 	// When send button is clicked (form submitted)
-	function send(event) {
+	function handleSubmit(event) {
 		event.preventDefault();
 		if (prompt == null) {
 			console.log("No idea submitted");
@@ -51,6 +44,15 @@ export default function Generator() {
 	function handlePromptChange(event) {
 		setPrompt(event.target.value);
 	}
+
+	// Form submits on enter
+	const handleKeyDown = (e) => {
+		//it triggers by pressing the enter key
+		if (e.keyCode === 13) {
+			handleSubmit(e);
+		}
+	};
+
 	// fetch response and display in speech bubble
 	async function fetchBotReply(prompt) {
 		const response = await openai.createCompletion({
@@ -155,7 +157,7 @@ export default function Generator() {
 						</Row>
 					</div>
 					{!isLoading && !isFinished && (
-						<Form className="m-3" onSubmit={send}>
+						<Form className="m-3" onSubmit={handleSubmit}>
 							<InputGroup>
 								<Form.Control
 									as="textarea"
@@ -163,6 +165,7 @@ export default function Generator() {
 									autoFocus={true}
 									placeholder="An evil genius wants to take over the world using AI."
 									onChange={handlePromptChange}
+									onKeyDown={handleKeyDown}
 								></Form.Control>
 								<Button
 									className="send-btn btn-secondary"
@@ -181,7 +184,7 @@ export default function Generator() {
 							className="m-auto my-3"
 							size="lg"
 							variant="dark"
-							onClick={() => handleClick()}
+							onClick={(event) => handleClick(event)}
 						>
 							View Result
 						</Button>
