@@ -1,6 +1,15 @@
 import { Card, Button } from "react-bootstrap";
+import { writeMovie } from "../config.js";
 
 export default function Result(props) {
+	writeMovie(
+		props.message,
+		props.title,
+		props.synopsis,
+		props.actors,
+		props.idea,
+		props.imgAlt
+	);
 	return (
 		<Card>
 			<Card.Img variant="top" src={props.img} alt={props.imgAlt} />

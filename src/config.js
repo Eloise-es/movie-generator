@@ -1,5 +1,6 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
+import { getDatabase, ref, set } from "firebase/database";
 import { Configuration, OpenAIApi } from "openai";
 
 // Firebase configuration
@@ -17,7 +18,18 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
+const db = getDatabase();
 
+export function writeMovie(message, title, synopsis, actors, idea, imgAlt) {
+	set(ref(db, "movies/" + Date.now()), {
+		message: message,
+		title: title,
+		synopsis: synopsis,
+		actors: actors,
+		idea: idea,
+		imgAlt: imgAlt,
+	});
+}
 // Initialise openai
 let apiKey = process.env.REACT_APP_OPENAI_API_KEY;
 if (!apiKey) {

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Form, Row, Button, InputGroup } from "react-bootstrap";
-import { openai, app } from "../config.js";
+import { openai } from "../config.js";
 import Result from "../partials/Result";
 import Loading from "../partials/loading";
 import movieboss from "../images/ai-movie-boss.png";
@@ -66,9 +66,10 @@ export default function Generator() {
 
 	// Fetch synopsis and call other functions using synopsis
 	async function fetchSynopsis(prompt) {
-		const response = await openai.createCompletion({
-			model: "text-davinci-003",
-			prompt: `Write a short movie synopsis based on a movie idea. Make it sound engaging, professional and marketable and include at least two suitable actors' names. Don't mention the movie title.
+		try {
+			const response = await openai.createCompletion({
+				model: "text-davinci-003",
+				prompt: `Write a short movie synopsis based on a movie idea. Make it sound engaging, professional and marketable and include at least two suitable actors' names. Don't mention the movie title.
 			###
 			Movie idea: A woman becomes obsessed with houseplants and eventually her house becomes such a jungle that the plants turn on her and she almost dies
 			Movie synopsis: When Sally (Natalie Portman) discovers a passion for houseplants, she's thrown into an obsession that quickly takes over her life and ruins her relationship with her husband, Mike (Ryan Reynolds). As her collection grows, Sally's house is gradually transformed into a thriving jungle. But when the plants begin to act strangely, strange accidents start happening and her life is put in danger. As the plants start to close in on her, Sally realizes why - they're not only trying to take over her house, but her life too! Can she reclaim control in time and make it out alive?
@@ -78,19 +79,22 @@ export default function Generator() {
 			###
 			Movie idea: ${prompt}
 			Movie synopsis: `,
-			max_tokens: 300,
-		});
-		console.log(response);
-		if (response.data.choices[0].finish_reason === "length") {
-			console.log("Synopsis stopped because of length");
+				max_tokens: 300,
+			});
+			console.log(response);
+			if (response.data.choices[0].finish_reason === "length") {
+				console.log("Synopsis stopped because of length");
+			}
+			const newSynopsis = response.data.choices[0].text.trim();
+			setSynopsis(newSynopsis);
+			await fetchTitle(newSynopsis);
+			await fetchStars(newSynopsis);
+			await fetchImagePrompt(newSynopsis);
+			setIsLoading(false);
+			setIsFinished(true);
+		} catch (error) {
+			console.error("Error fetching data:", error);
 		}
-		const newSynopsis = response.data.choices[0].text.trim();
-		setSynopsis(newSynopsis);
-		fetchTitle(newSynopsis);
-		fetchStars(newSynopsis);
-		fetchImagePrompt(newSynopsis);
-		setIsLoading(false);
-		setIsFinished(true);
 	}
 
 	async function fetchTitle(synopsis) {
@@ -193,6 +197,7 @@ export default function Generator() {
 			)}
 			{showResult && (
 				<Result
+					message={message}
 					img={img}
 					imgAlt={imgAlt}
 					title={title}
