@@ -1,20 +1,11 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getDatabase, ref, set } from "firebase/database";
+import { getAuth } from "firebase/auth";
+import { getFirestore } from "firebase/firestore";
 import { Configuration, OpenAIApi } from "openai";
 
 // Firebase configuration
-// const firebaseConfig = {
-// 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-// 	authDomain: "ai-movie-database.firebaseapp.com",
-// 	databaseURL:
-// 		"https://ai-movie-database-default-rtdb.europe-west1.firebasedatabase.app",
-// 	projectId: "ai-movie-database",
-// 	storageBucket: "ai-movie-database.appspot.com",
-// 	messagingSenderId: "556385645237",
-// 	appId: "1:556385645237:web:e01576458f954ebc51c4fc",
-// 	measurementId: "G-L6JRZT3M4W",
-// };
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
 	authDomain: "aimd-app.firebaseapp.com",
@@ -27,7 +18,8 @@ const firebaseConfig = {
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
 export const analytics = getAnalytics(app);
-const db = getDatabase();
+export const auth = getAuth(app);
+export const db = getFirestore(app);
 
 export function writeMovie(message, title, synopsis, actors, idea, imgAlt) {
 	set(ref(db, "movies/" + Date.now()), {

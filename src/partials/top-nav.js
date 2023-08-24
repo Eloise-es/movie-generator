@@ -1,12 +1,20 @@
 import { LinkContainer } from "react-router-bootstrap";
-
-import Container from "react-bootstrap/Container";
-import Nav from "react-bootstrap/Nav";
-import Navbar from "react-bootstrap/Navbar";
+import { Container, Nav, Navbar, Button } from "react-bootstrap";
+import { auth } from "../config.js";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { GoogleAuthProvider, signInWithRedirect } from "firebase/auth";
 
 import logo from "../images/logo.png";
 
 export default function TopNav() {
+	const [user] = useAuthState(auth);
+	const googleSignIn = () => {
+		const provider = new GoogleAuthProvider();
+		signInWithRedirect(auth, provider);
+	};
+	const signOut = () => {
+		auth.signOut();
+	};
 	return (
 		<Navbar
 			expand="lg"
@@ -35,6 +43,27 @@ export default function TopNav() {
 						<LinkContainer to={"/generator"}>
 							<Nav.Link>Suggest a movie</Nav.Link>
 						</LinkContainer>
+					</Nav>
+					<Nav className="justify-content-end">
+						{user ? (
+							<Button
+								onClick={signOut}
+								className="sign-out"
+								type="button"
+								variant="secondary"
+							>
+								Sign Out
+							</Button>
+						) : (
+							<Button
+								className="sign-in"
+								onClick={googleSignIn}
+								type="button"
+								variant="secondary"
+							>
+								Sign in with Google
+							</Button>
+						)}
 					</Nav>
 				</Navbar.Collapse>
 			</Container>
