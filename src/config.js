@@ -1,8 +1,8 @@
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
-import { getDatabase, ref, set } from "firebase/database";
 import { getAuth } from "firebase/auth";
 import { getFirestore } from "firebase/firestore";
+import { addDoc, collection, serverTimestamp } from "firebase/firestore";
 import { Configuration, OpenAIApi } from "openai";
 
 // Firebase configuration
@@ -21,14 +21,25 @@ export const analytics = getAnalytics(app);
 export const auth = getAuth(app);
 export const db = getFirestore(app);
 
-export function writeMovie(message, title, synopsis, actors, idea, imgAlt) {
-	set(ref(db, "movies/" + Date.now()), {
+export async function writeMovie(
+	message,
+	title,
+	synopsis,
+	actors,
+	idea,
+	imgAlt
+) {
+	const { uid, displayName } = auth.currentUser;
+	await addDoc(collection(db, "movies"), {
 		message: message,
 		title: title,
 		synopsis: synopsis,
 		actors: actors,
 		idea: idea,
 		imgAlt: imgAlt,
+		createdAt: serverTimestamp(),
+		createdBy: displayName,
+		uid,
 	});
 }
 // Initialise openai
