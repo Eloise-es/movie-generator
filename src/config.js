@@ -1,9 +1,17 @@
+import { Configuration, OpenAIApi } from "openai";
 import { initializeApp } from "firebase/app";
 import { getAnalytics } from "firebase/analytics";
 import { getAuth } from "firebase/auth";
-import { getFirestore } from "firebase/firestore";
-import { addDoc, collection, serverTimestamp } from "firebase/firestore";
-import { Configuration, OpenAIApi } from "openai";
+import {
+	getFirestore,
+	addDoc,
+	collection,
+	serverTimestamp,
+	query,
+	orderBy,
+	onSnapshot,
+	limit,
+} from "firebase/firestore";
 
 // Firebase configuration
 const firebaseConfig = {
@@ -52,3 +60,55 @@ const configuration = new Configuration({
 	apiKey: apiKey,
 });
 export const openai = new OpenAIApi(configuration);
+
+export const defaultMovies = [
+	{
+		createdBy: "Eloise Salmon",
+		actors: [
+			"Marion Cotillard",
+			"Tom Hardy",
+			"Riz Ahmed",
+			"Ella Purnell",
+			"Carey Mulligan.",
+		],
+		message:
+			"\n\nThis sounds like a unique and intriguing story! I love the idea of focusing on a woman with such a specific lifestyle. I'll need more time to think about how to make it happen best, but I'm excited!",
+		createdAt: {
+			seconds: 1692891648,
+			nanoseconds: 785000000,
+		},
+		title: '"Coffee & Takeoff"',
+		imgAlt:
+			"A woman is seen from behind, standing in the middle of a crowded café. Her hands are clenched tightly around a cup of coffee, with a glowing ember of a cigarette in one hand. She is illuminated by a shaft of light coming in from a window, and she looks determined and resolute.",
+		uid: "8rHG0QtQVUOhYMmHxjSA4Hf1Xy22",
+		idea: "A French film about a woman who drinks coffee all day and smokes in bed",
+		synopsis:
+			"Vivienne (Marion Cotillard), a jaded housewife settled in a mundane and uninspiring life, finds respite in an unexpected and unhealthy habit – chain-drinking coffee all day and smoking in bed. Struggling to find her place in society, she starts to venture out of her comfort zone and explore her creative passions. A captivating and introspective drama, it follows Vivienne as she begins to discover an inner strength and resilience she never knew she had. With a wild and rebellious spirit, will Vivienne take the leap of faith and break free of her oppressive routine?",
+		id: "5db0Gp1IQhBQqz9h0nf1",
+	},
+	{
+		idea: "An action movie about a man in his 70s who moves to the moon",
+		synopsis:
+			"After years of yearning, Bill (Robert De Niro) has finally decided to chase his lifelong dream of living on the moon. Joining a space exploration mission in his 70s, Bill ends up in a deserted lunar base, where otherworldly creatures lurk in the shadows. But when a mysterious force threatens the mission’s security, it's up to Bill to brave the fight with his skills and decades of wisdom. Can he survive the extraterrestrial creatures of the moon and protect the earth’s future? This high-octane action-adventure follows Bill on an intergalactic mission to save the world.",
+		imgAlt:
+			"A man wearing a space suit stands in a deserted lunar base, surrounded by mysterious shadows and creatures. He is aiming a futuristic gun at the creatures, while a large, full moon looms in the background.",
+		uid: "8rHG0QtQVUOhYMmHxjSA4Hf1Xy22",
+		title: "Moon Maniacs",
+		createdAt: {
+			seconds: 1692892462,
+			nanoseconds: 43000000,
+		},
+		actors: [
+			"Robert De Niro",
+			"John Travolta",
+			"Tom Hanks",
+			"Matt Damon",
+			"Jack Nicholson",
+			"Charlie Sheen",
+		],
+		message:
+			"\n\nThat sounds so unique and creative! I'm super excited about the concept of a 70s man moving to the moon. Let me grab a pencil first. ;)",
+		createdBy: "Eloise Salmon",
+		id: "Xx0U2bJTM8gVF8jAt5VS",
+	},
+];
