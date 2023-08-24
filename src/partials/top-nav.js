@@ -46,14 +46,18 @@ export default function TopNav() {
 					</Nav>
 					<Nav className="justify-content-end">
 						{user ? (
-							<Button
-								onClick={signOut}
-								className="sign-out"
-								type="button"
-								variant="secondary"
-							>
-								Sign Out
-							</Button>
+							<Navbar.Text>
+								Signed in as {user.displayName}
+								<Button
+									onClick={signOut}
+									className="sign-out ms-2"
+									type="button"
+									variant="secondary"
+									size="sm"
+								>
+									Sign Out
+								</Button>
+							</Navbar.Text>
 						) : (
 							<Button
 								className="sign-in"
