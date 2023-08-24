@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Card, Form, Row, Button, InputGroup } from "react-bootstrap";
-import { openai } from "../config.js";
+import { openai, writeMovie } from "../config.js";
 import Result from "../partials/Result";
 import Loading from "../partials/loading";
 import movieboss from "../images/ai-movie-boss.png";
@@ -37,6 +37,7 @@ export default function Generator() {
 	// When 'view result' button is clicked
 	function handleClick(event) {
 		event.preventDefault();
+		writeMovie(message, title, synopsis, actors, prompt, imgAlt);
 		setShowResult(true);
 	}
 
