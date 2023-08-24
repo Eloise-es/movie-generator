@@ -7,6 +7,7 @@ export default function MovieCard({
 	synopsis,
 	actors,
 	idea,
+	author,
 }) {
 	return (
 		<Card>
@@ -31,7 +32,9 @@ export default function MovieCard({
 				</div>
 			</Card.Body>
 			<Card.Footer className="text-muted">
-				<small>From the idea "{idea}"</small>
+				<small>
+					From the idea "{idea}" by {author}
+				</small>
 			</Card.Footer>
 		</Card>
 	);

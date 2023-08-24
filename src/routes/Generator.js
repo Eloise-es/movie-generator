@@ -206,6 +206,7 @@ export default function Generator() {
 					synopsis={synopsis}
 					actors={actors}
 					idea={prompt}
+					author={user.displayName}
 				/>
 			)}
 		</main>
