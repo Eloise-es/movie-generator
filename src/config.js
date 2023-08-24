@@ -4,16 +4,25 @@ import { getDatabase, ref, set } from "firebase/database";
 import { Configuration, OpenAIApi } from "openai";
 
 // Firebase configuration
+// const firebaseConfig = {
+// 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
+// 	authDomain: "ai-movie-database.firebaseapp.com",
+// 	databaseURL:
+// 		"https://ai-movie-database-default-rtdb.europe-west1.firebasedatabase.app",
+// 	projectId: "ai-movie-database",
+// 	storageBucket: "ai-movie-database.appspot.com",
+// 	messagingSenderId: "556385645237",
+// 	appId: "1:556385645237:web:e01576458f954ebc51c4fc",
+// 	measurementId: "G-L6JRZT3M4W",
+// };
 const firebaseConfig = {
 	apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-	authDomain: "ai-movie-database.firebaseapp.com",
-	databaseURL:
-		"https://ai-movie-database-default-rtdb.europe-west1.firebasedatabase.app",
-	projectId: "ai-movie-database",
-	storageBucket: "ai-movie-database.appspot.com",
-	messagingSenderId: "556385645237",
-	appId: "1:556385645237:web:e01576458f954ebc51c4fc",
-	measurementId: "G-L6JRZT3M4W",
+	authDomain: "aimd-app.firebaseapp.com",
+	projectId: "aimd-app",
+	storageBucket: "aimd-app.appspot.com",
+	messagingSenderId: "902341939824",
+	appId: "1:902341939824:web:1bed136a3aa6ef1afa1ab5",
+	measurementId: "G-8Q3YEMCF0L",
 };
 // Initialize Firebase
 export const app = initializeApp(firebaseConfig);
