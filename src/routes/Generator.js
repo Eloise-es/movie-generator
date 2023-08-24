@@ -1,13 +1,15 @@
 import React, { useState } from "react";
 import { Card, Form, Row, Button, InputGroup } from "react-bootstrap";
-import { openai, writeMovie } from "../config.js";
+import { openai, writeMovie, auth } from "../config.js";
 import Loading from "../partials/loading";
 import movieboss from "../images/ai-movie-boss.png";
 import sendbtn from "../images/send-btn-icon.png";
 import "../generator.css";
 import MovieCard from "../partials/MovieCard.js";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 export default function Generator() {
+	const [user] = useAuthState(auth);
 	// Set variables using useState
 	const [prompt, setPrompt] = useState(null);
 	const [message, setMessage] = useState(
@@ -139,7 +141,6 @@ export default function Generator() {
 		setImgAlt(newAlt);
 		// fetchImage(newAlt);
 	}
-
 	return (
 		<main className="m-auto mt-5" style={{ maxWidth: "420px" }}>
 			{!showResult && (
