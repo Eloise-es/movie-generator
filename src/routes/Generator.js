@@ -1,11 +1,11 @@
 import React, { useState } from "react";
 import { Card, Form, Row, Button, InputGroup } from "react-bootstrap";
 import { openai, writeMovie } from "../config.js";
-import Result from "../partials/Result";
 import Loading from "../partials/loading";
 import movieboss from "../images/ai-movie-boss.png";
 import sendbtn from "../images/send-btn-icon.png";
 import "../generator.css";
+import MovieCard from "../partials/MovieCard.js";
 
 export default function Generator() {
 	// Set variables using useState
@@ -197,7 +197,7 @@ export default function Generator() {
 				</Card>
 			)}
 			{showResult && (
-				<Result
+				<MovieCard
 					message={message}
 					img={img}
 					imgAlt={imgAlt}

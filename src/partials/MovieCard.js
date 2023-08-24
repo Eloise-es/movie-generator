@@ -1,16 +1,38 @@
-import Card from "react-bootstrap/Card";
+import { Card, Button } from "react-bootstrap";
 
-function MovieCard({ image, altText, title, synopsis, idea }) {
-  return (
-    <Card className="mb-3">
-      <Card.Img variant="top" src={image} alt={altText} />
-      <Card.Body>
-        <Card.Title>{title}</Card.Title>
-        <Card.Text>{synopsis}</Card.Text>
-      </Card.Body>
-      <Card.Footer className="text-muted">From the idea "{idea}"</Card.Footer>
-    </Card>
-  );
+export default function MovieCard({
+	img,
+	imgAlt,
+	title,
+	synopsis,
+	actors,
+	idea,
+}) {
+	return (
+		<Card>
+			<Card.Img variant="top" src={img} alt={imgAlt} />
+			<Card.Title>
+				<h1 className="text-center pt-3">{title}</h1>
+			</Card.Title>
+			<Card.Body className="p-3">
+				<Card.Text>{synopsis}</Card.Text>
+				<div>
+					{actors.map((actor, i) => (
+						<Button
+							href={"https://en.wikipedia.org/wiki/" + actor}
+							target="_blank"
+							className="m-1"
+							key={i}
+							size="sm"
+						>
+							{actor}
+						</Button>
+					))}
+				</div>
+			</Card.Body>
+			<Card.Footer className="text-muted">
+				<small>From the idea "{idea}"</small>
+			</Card.Footer>
+		</Card>
+	);
 }
-
-export default MovieCard;
