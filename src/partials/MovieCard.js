@@ -11,7 +11,7 @@ export default function MovieCard({
 	author,
 }) {
 	return (
-		<Card key={key}>
+		<Card key={key} className="mb-3">
 			<Card.Img variant="top" src={img} alt={imgAlt} />
 			<Card.Title>
 				<h1 className="text-center pt-3">{title}</h1>

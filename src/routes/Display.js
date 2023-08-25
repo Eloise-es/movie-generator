@@ -38,7 +38,7 @@ export default function Display() {
 			<Row>
 				{movies &&
 					movies.map((movie) => (
-						<Col md key={movie.id}>
+						<Col sm={12} md={6} lg={4} xl={3} key={movie.id}>
 							<MovieCard
 								img="https://picsum.photos/200/200"
 								imgAlt={movie.imgAlt}

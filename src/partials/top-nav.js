@@ -50,7 +50,7 @@ export default function TopNav() {
 								Signed in as {user.displayName}
 								<Button
 									onClick={signOut}
-									className="sign-out ms-2"
+									className="sign-out ms-2 py-0"
 									type="button"
 									variant="secondary"
 									size="sm"

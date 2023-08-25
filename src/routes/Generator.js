@@ -142,9 +142,9 @@ export default function Generator() {
 		// fetchImage(newAlt);
 	}
 	return (
-		<main className="m-auto mt-5" style={{ maxWidth: "420px" }}>
+		<main className="m-auto mt-4" style={{ maxWidth: "420px" }}>
 			{!showResult && (
-				<Card className="mb-2 pb-3" id="setup-container">
+				<Card className="m-2 pb-3" id="setup-container">
 					<div
 						className="p-3"
 						style={{ minHeight: "234px", alignSelf: "center" }}
